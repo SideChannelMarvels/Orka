@@ -1,5 +1,8 @@
-# docker
-This is the Git repo of the official Docker image for SideChannelMarvels.
+# Orka
+*Orka can communicate with and command killer whales using his tonally unique and compelling sounds, directing up to hundreds of whales at once. He can augment his physical might by drawing strength from killer
+whales in his immediate vicinity.*
+
+Orka is the Git repo of the official Docker image for SideChannelMarvels.
 
 The Docker images aim to provide an easy way of setting up an environment where all Side-Channel Marvels are
 already in the right place. Building the images with this Dockerfiles will download all required libraries
