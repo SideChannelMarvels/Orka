@@ -36,5 +36,9 @@ WORKDIR "/root/Tracer/TracerGrind/sqlitetrace"
 RUN make \
     && make install PREFIX=/usr
 
+WORKDIR "/root/Daredevil"
+RUN make \
+    && make install
+
 WORKDIR "/root"
 ENTRYPOINT zsh 
