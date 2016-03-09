@@ -39,13 +39,13 @@ WORKDIR "/root"
 RUN wget -O ~/.zshrc http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
 
 # Download and build PIN
-RUN wget http://software.intel.com/sites/landingpage/pintool/downloads/pin-2.13-65163-gcc.4.4.7-linux.tar.gz \
-    && tar xzf pin-2.13-65163-gcc.4.4.7-linux.tar.gz \
-    && mv pin-2.13-65163-gcc.4.4.7-linux /opt \
-    && export PIN_ROOT=/opt/pin-2.13-65163-gcc.4.4.7-linux \
-    && rm pin-2.13-65163-gcc.4.4.7-linux.tar.gz 
+RUN wget http://software.intel.com/sites/landingpage/pintool/downloads/pin-2.14-71313-gcc.4.4.7-linux.tar.gz \
+    && tar xzf pin-2.14-71313-gcc.4.4.7-linux.tar.gz \
+    && mv pin-2.14-71313-gcc.4.4.7-linux /opt \
+    && export PIN_ROOT=/opt/pin-2.14-71313-gcc.4.4.7-linux \
+    && rm pin-2.14-71313-gcc.4.4.7-linux.tar.gz 
 
-ENV PIN_ROOT=/opt/pin-2.13-65163-gcc.4.4.7-linux
+ENV PIN_ROOT=/opt/pin-2.14-71313-gcc.4.4.7-linux
 
 # Download and build Valgrind
 RUN wget 'http://valgrind.org/downloads/valgrind-3.11.0.tar.bz2' \
