@@ -36,7 +36,7 @@ In order to view X windows it is required to set the correct display variable,
 mount the X11-socket and the Xauthority file into the image:
 
 ~~~
-docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/root/.Xauthority -it scamarvels
+docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/root/.Xauthority --privileged -it scamarvels
 ~~~
 
 To leave the container, simply type `exit`. zsh and vim are preinstalled, 
