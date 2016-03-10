@@ -29,7 +29,7 @@ The `--no-cache` option here is required to force a rebuild because Docker's cac
 repositories.
 
 ~~~
-docker run -it scamarvels 
+docker run --privileged -it scamarvels 
 ~~~
 Starts the container. Everything should work from there except visualization. 
 In order to view X windows it is required to set the correct display variable, 
