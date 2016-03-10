@@ -44,5 +44,11 @@ if you require further packages simply install them via apt-get
 (you need to run apt-get update first in order to retrieve the package lists)
 
 ## Troubleshooting
+#### TracerPIN
+See the [TracerPIN troubleshooting section](https://github.com/SideChannelMarvels/Tracer/tree/master/TracerPIN#troubleshooting)
+
+#### Hack.lu 2009
 When running `wine notepad.exe` the first time for Hack.lu 2009, it offers you to install mono. Simply decline. After that, notepad is killed. Now running `wine notepad.exe &` will start a new notepad which does not get killed and it's not required
 to attach a second terminal to the container. Running the DCA [as described](https://github.com/SideChannelMarvels/Deadpool/tree/master/wbs_aes_hacklu2009/DCA) should work without problems on the container connected to your X server.
+
+
