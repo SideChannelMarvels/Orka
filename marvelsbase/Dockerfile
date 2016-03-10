@@ -29,6 +29,8 @@ RUN apt-get update \
     make \
     vim \
     wget \ 
+    wine \
+    xdotool \
     zsh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
