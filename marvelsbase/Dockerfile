@@ -15,8 +15,13 @@ RUN apt-get update \
     git \
     g++ \
     g++-multilib \
+    libboost-iostreams-dev \
+    libboost-program-options-dev \
+    libboost-random-dev \
+    libboost-serialization-dev \
     libcapstone2 \
     libcapstone-dev \
+    libntl-dev \
     libsqlite3-dev \
     libsqlite3-dev:i386 \
     libssl-dev \
