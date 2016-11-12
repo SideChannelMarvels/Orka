@@ -32,6 +32,7 @@ RUN apt-get update \
     qtbase5-dev-tools \
     qtbase5-dev \
     make \
+    python3 \
     vim \
     wget \ 
     wine \
@@ -61,7 +62,7 @@ RUN wget 'http://valgrind.org/downloads/valgrind-3.11.0.tar.bz2' \
 
 WORKDIR "/root/valgrind-3.11.0"
 RUN ./autogen.sh \
-    && ./configure --prefix=/usr \
+    && ./configure \
     && make -j4 \
     && make install
 
