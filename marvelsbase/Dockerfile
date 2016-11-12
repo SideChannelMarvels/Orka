@@ -11,6 +11,7 @@ RUN apt-get update \
     build-essential \
     ca-certificates \
     clang \
+    cmake \
     gcc-multilib \
     git \
     g++ \
@@ -28,11 +29,11 @@ RUN apt-get update \
     libssl-dev:i386 \
     libstdc++-4.9-dev \
     libstdc++-4.9-dev:i386 \
+    make \
+    python3 \
     qt5-qmake \ 
     qtbase5-dev-tools \
     qtbase5-dev \
-    make \
-    python3 \
     vim \
     wget \ 
     wine \

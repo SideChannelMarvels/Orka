@@ -7,6 +7,7 @@ RUN git clone https://github.com/SideChannelMarvels/Daredevil
 RUN git clone https://github.com/SideChannelMarvels/Deadpool
 RUN git clone https://github.com/SideChannelMarvels/Tracer
 RUN git clone https://github.com/SideChannelMarvels/JeanGrey
+RUN git clone https://github.com/ph4r05/Whitebox-crypto-AES
 
 WORKDIR "/root/Tracer/TracerPIN"
 RUN make \
@@ -40,6 +41,10 @@ RUN make \
 WORKDIR "/root/Daredevil"
 RUN make \
     && make install
+
+WORKDIR "/root/Whitebox-crypto-AES"
+RUN ./build-release.sh \
+    && cp build-release/main ../Deadpool/wbs_aes_karroumi2010/target/
 
 WORKDIR "/root"
 RUN echo "export PATH=\$PATH:/usr/local/bin" >> .bash_profile
