@@ -7,6 +7,7 @@ RUN git clone https://github.com/SideChannelMarvels/Daredevil
 RUN git clone https://github.com/SideChannelMarvels/Deadpool
 RUN git clone https://github.com/SideChannelMarvels/Tracer
 RUN git clone https://github.com/SideChannelMarvels/JeanGrey
+RUN git clone https://github.com/SideChannelMarvels/Stark
 RUN git clone https://github.com/ph4r05/Whitebox-crypto-AES
 
 WORKDIR "/root/Tracer/TracerPIN"
@@ -39,6 +40,10 @@ RUN make \
     && make install
 
 WORKDIR "/root/Daredevil"
+RUN make \
+    && make install
+
+WORKDIR "/root/Stark"
 RUN make \
     && make install
 
