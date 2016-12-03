@@ -57,11 +57,11 @@ RUN wget http://software.intel.com/sites/landingpage/pintool/downloads/pin-2.14-
 ENV PIN_ROOT=/opt/pin-2.14-71313-gcc.4.4.7-linux
 
 # Download and build Valgrind
-RUN wget 'http://valgrind.org/downloads/valgrind-3.11.0.tar.bz2' \
-    && tar xf valgrind-3.11.0.tar.bz2 \
-    && rm -rf valgrind-3.11.0.tar.bz2 
+RUN wget 'http://valgrind.org/downloads/valgrind-3.12.0.tar.bz2' \
+    && tar xf valgrind-3.12.0.tar.bz2 \
+    && rm -rf valgrind-3.12.0.tar.bz2
 
-WORKDIR "/root/valgrind-3.11.0"
+WORKDIR "/root/valgrind-3.12.0"
 RUN ./autogen.sh \
     && ./configure \
     && make -j4 \

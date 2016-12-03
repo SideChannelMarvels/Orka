@@ -22,10 +22,10 @@ RUN qmake -qt=5 \
 
 WORKDIR "/root"
 
-RUN cp -r Tracer/TracerGrind/tracergrind valgrind-3.11.0 \
-    && patch -p0 < Tracer/TracerGrind/valgrind-3.11.0.diff
+RUN cp -r Tracer/TracerGrind/tracergrind valgrind-3.12.0 \
+    && patch -p0 < Tracer/TracerGrind/valgrind-3.12.0.diff
 
-WORKDIR "/root/valgrind-3.11.0"
+WORKDIR "/root/valgrind-3.12.0"
 RUN ./autogen.sh \
     && ./configure \
     && make -j4 \
