@@ -1,4 +1,4 @@
-# Use debian jessie image
+# Use debian stretch image
 FROM marvelsbase 
 MAINTAINER Michael Eder <michael.eder@aisec.fraunhofer.de>
 
@@ -10,11 +10,6 @@ RUN git clone https://github.com/SideChannelMarvels/JeanGrey
 RUN git clone https://github.com/SideChannelMarvels/Stark
 RUN git clone https://github.com/ph4r05/Whitebox-crypto-AES
 
-WORKDIR "/root/Tracer/TracerPIN"
-RUN make \
-    && cp -a Tracer /usr/local/bin \
-    && cp -a obj-* /usr/local/bin
-
 WORKDIR "/root/Tracer/TraceGraph"
 RUN qmake -qt=5 \
     && make \
@@ -22,10 +17,10 @@ RUN qmake -qt=5 \
 
 WORKDIR "/root"
 
-RUN cp -r Tracer/TracerGrind/tracergrind valgrind-3.12.0 \
-    && patch -p0 < Tracer/TracerGrind/valgrind-3.12.0.diff
+RUN cp -r Tracer/TracerGrind/tracergrind valgrind-3.13.0 \
+    && patch -p0 < Tracer/TracerGrind/valgrind-3.13.0.diff
 
-WORKDIR "/root/valgrind-3.12.0"
+WORKDIR "/root/valgrind-3.13.0"
 RUN ./autogen.sh \
     && ./configure \
     && make -j4 \
@@ -50,6 +45,12 @@ RUN make \
 WORKDIR "/root/Whitebox-crypto-AES"
 RUN ./build-release.sh \
     && cp build-release/main ../Deadpool/wbs_aes_karroumi2010/target/
+
+#WORKDIR "/root/Tracer/TracerPIN"
+# This requires GCC 4.4.7...
+#RUN make \
+#    && cp -a Tracer /usr/local/bin \
+#    && cp -a obj-* /usr/local/bin
 
 WORKDIR "/root"
 RUN echo "export PATH=\$PATH:/usr/local/bin" >> .bash_profile
