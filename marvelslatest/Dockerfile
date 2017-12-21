@@ -10,6 +10,10 @@ RUN git clone https://github.com/SideChannelMarvels/JeanGrey
 RUN git clone https://github.com/SideChannelMarvels/Stark
 RUN git clone https://github.com/ph4r05/Whitebox-crypto-AES
 
+# HACK: temporary bypass for Traces build error
+WORKDIR "/root/Tracer"
+RUN git reset --hard 1ef3b8611f8fa411fc458a38853901fe307294e5
+
 WORKDIR "/root/Tracer/TracerPIN"
 RUN make \
     && cp -a Tracer /usr/local/bin \
