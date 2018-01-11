@@ -1,5 +1,5 @@
-# Use debian jessie image
-FROM debian:jessie
+# Use debian stretch image
+FROM debian:stretch
 MAINTAINER Michael Eder <michael.eder@aisec.fraunhofer.de>
 
 # Get latest package list, upgrade packages, install required packages 
@@ -20,15 +20,16 @@ RUN apt-get update \
     libboost-program-options-dev \
     libboost-random-dev \
     libboost-serialization-dev \
-    libcapstone2 \
+    libcapstone3 \
     libcapstone-dev \
     libntl-dev \
     libsqlite3-dev \
     libsqlite3-dev:i386 \
     libssl-dev \
     libssl-dev:i386 \
-    libstdc++-4.9-dev \
-    libstdc++-4.9-dev:i386 \
+    libstdc++-6-dev \
+    libstdc++-6-dev:i386 \
+    libomp-dev \
     make \
     python3 \
     qt5-qmake \ 
@@ -57,11 +58,11 @@ RUN wget http://software.intel.com/sites/landingpage/pintool/downloads/pin-2.14-
 ENV PIN_ROOT=/opt/pin-2.14-71313-gcc.4.4.7-linux
 
 # Download and build Valgrind
-RUN wget 'http://valgrind.org/downloads/valgrind-3.12.0.tar.bz2' \
-    && tar xf valgrind-3.12.0.tar.bz2 \
-    && rm -rf valgrind-3.12.0.tar.bz2
+RUN wget 'ftp://sourceware.org/pub/valgrind/valgrind-3.13.0.tar.bz2' \
+    && tar xf valgrind-3.13.0.tar.bz2 \
+    && rm -rf valgrind-3.13.0.tar.bz2
 
-WORKDIR "/root/valgrind-3.12.0"
+WORKDIR "/root/valgrind-3.13.0"
 RUN ./autogen.sh \
     && ./configure \
     && make -j4 \
