@@ -38,7 +38,10 @@ RUN apt-get update \
 # Install time
 RUN apt-get install -y time
 
-# Install Julia
+# Install matplotlib in python3 (installs numpy as a dependency)
+RUN apt-get install -y python3-matplotlib
+
+# Install Julia (we stick to the 0.6.2 for now to avoid incompatibilites)
 RUN wget https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.2-linux-x86_64.tar.gz \
     && tar xf julia-0.6.2-linux-x86_64.tar.gz \
     && rm julia-0.6.2-linux-x86_64.tar.gz \
@@ -46,11 +49,13 @@ RUN wget https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.2-linux-
 
 # Install IJulia and other packages, letting Julia do an internal miniconda install,
 # then adjust jupyter config to make notebook server launchable
+# TODO: switch to the system-wide miniconda
 RUN julia -e 'Pkg.init(); ENV["PYTHON"]=""; Pkg.add("PyPlot"); Pkg.add("IJulia")' \
     && mkdir .jupyter \
     && echo "c.NotebookApp.allow_root = True\nc.NotebookApp.ip = '*'\nc.NotebookApp.open_browser = False\nc.NotebookApp.token = ''" > .jupyter/jupyter_notebook_config.py
 
-# Install Jlsca as Julia package. TODO: install a particular release
+# Install Jlsca as Julia package
+# TODO: install a particular release
 RUN julia -e 'Pkg.clone("https://github.com/Riscure/Jlsca")'
 
 # Get Jlsca tutorials
