@@ -28,20 +28,20 @@
 FROM scamarvels
 MAINTAINER Ilya Kizhvatov <ilya.kizhvatov@gmail.com>
 
-# Install Git Large File Storage extension (experimental repo stores tracesets using LFS)
+# Git Large File Storage extension (experimental repo stores tracesets using LFS)
 RUN apt-get update \
     && apt-get install -y curl \
     && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
     && apt-get install -y git-lfs \
     && git lfs install
 
-# Install time
+# time, for benchmarking
 RUN apt-get install -y time
 
-# Install matplotlib in python3 (installs numpy as a dependency)
+# matplotlib in python3 (installs numpy as a dependency)
 RUN apt-get install -y python3-matplotlib
 
-# Install Julia (we stick to the 0.6.2 for now to avoid incompatibilites)
+# Julia (stick to 0.6.2 for now to avoid incompatibilites)
 RUN wget https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.2-linux-x86_64.tar.gz \
     && tar xf julia-0.6.2-linux-x86_64.tar.gz \
     && rm julia-0.6.2-linux-x86_64.tar.gz \
@@ -49,7 +49,6 @@ RUN wget https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.2-linux-
 
 # Install IJulia and other packages, letting Julia do an internal miniconda install,
 # then adjust jupyter config to make notebook server launchable
-# TODO: switch to the system-wide miniconda
 RUN julia -e 'Pkg.init(); ENV["PYTHON"]=""; Pkg.add("PyPlot"); Pkg.add("IJulia")' \
     && mkdir .jupyter \
     && echo "c.NotebookApp.allow_root = True\nc.NotebookApp.ip = '*'\nc.NotebookApp.open_browser = False\nc.NotebookApp.token = ''" > .jupyter/jupyter_notebook_config.py
@@ -62,7 +61,7 @@ RUN julia -e 'Pkg.clone("https://github.com/Riscure/Jlsca")'
 RUN git clone https://github.com/ikizhvatov/jlsca-tutorials
 
 # Get the experimental package for the conditional reduction paper
-RUN git clone https://gitlab.science.ru.nl/wbsca/experiments
+RUN git clone https://github.com/ikizhvatov/conditional-reduction
 
 # Keep zsh as entrypoint as scamarvels stuff is made for it
 # For running jlsca stuff go into bash manually
