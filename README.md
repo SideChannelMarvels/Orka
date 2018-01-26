@@ -9,7 +9,7 @@ already in the right place. Building the images with this Dockerfiles will downl
 and build the tools.
 
 ## Requirements
-- Docker (tested on 1.10.2)
+- Docker (tested on 17.12.0-ce, build c97c6d6)
 
 ## Build instructions
 First, build the scamarvel base image. It contains all required packages from the Debian repositories
@@ -42,6 +42,31 @@ docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xautho
 To leave the container, simply type `exit`. zsh and vim are preinstalled, 
 if you require further packages simply install them via apt-get 
 (you need to run apt-get update first in order to retrieve the package lists)
+
+## ScaMarvelsPlus image
+
+The `scamarvelsplus` image adds the following things on top of `scamarvels`:
+* [Jlsca toolbox](https://github.com/Riscure/Jlsca) with [tutorials](https://github.com/ikizhvatov/jlsca-tutorials), and the environment to run it
+* [trasets and and scripts](https://github.com/ikizhvatov/conditional-reduction) to reproduce experiments with sample reduction in software execution traces
+
+Build this image:
+~~~
+docker build --no-cache -t scamarvelsplus ./marvelsplus
+~~~
+
+Start this image with the port forwarded for Jupyter notebook:
+~~~
+# docker run --privileged -it -p 8888:8888 scamarvelsplus
+~~~
+
+To have a shared folder for persistent storage or to access files on the host, add `-v ~/dockershare:/mnt` to the above command, where `~/dockershare` is an existing host file system folder.
+
+To play with the tutorials, start Jupyter notebook server in the container:
+~~~
+julia -e 'using IJulia; notebook()'
+~~~
+Prepend this command with `JULIA_NUM_THREADS=2` to give Julia interpreter 2 threads (or whatever number you choose).
+Once the notebook server is started, go to _localhost:8888_ in your browser on the host
 
 ## Troubleshooting
 #### TracerPIN
