@@ -45,16 +45,16 @@ if you require further packages simply install them via apt-get
 
 ## ScaMarvelsPlus image
 
-The `scamarvelsplus` image adds the following things on top of `scamarvels`:
-* [Jlsca toolbox](https://github.com/Riscure/Jlsca) with [tutorials](https://github.com/ikizhvatov/jlsca-tutorials), and the environment to run it
-* [trasets and and scripts](https://github.com/ikizhvatov/conditional-reduction) to reproduce experiments with sample reduction in software execution traces
+The `scamarvelsplus` image adds the following on top of `scamarvels`:
+* [Jlsca toolbox](https://github.com/Riscure/Jlsca) with [tutorials](https://github.com/ikizhvatov/jlsca-tutorials)
+* [trasets and and scripts](https://github.com/ikizhvatov/conditional-reduction) to reproduce experiments from https://eprint.iacr.org/2018/095 with sample reduction in software execution traces
 
 Build this image:
 ~~~
 docker build --no-cache -t scamarvelsplus ./marvelsplus
 ~~~
 
-Start this image with the port forwarded for Jupyter notebook:
+Start this image with the port forwarded for Jupyter notebook server:
 ~~~
 # docker run --privileged -it -p 8888:8888 scamarvelsplus
 ~~~
